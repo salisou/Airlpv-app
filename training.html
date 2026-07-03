@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Piattaforma Formazione - Corsi Completi di Programmazione" />
+    <meta name="theme-color" content="#1a1a2e" />
+    <title>Piattaforma Formazione - Corsi di Programmazione</title>
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Highlight.js for code syntax -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    
+    <link rel="stylesheet" href="training-styles.css" />
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header id="header" role="banner">
+        <div class="container">
+            <a href="index.html" class="logo" aria-label="Home">
+                <i class="fas fa-graduation-cap"></i>Academy<span>.</span>
+            </a>
+            <nav role="navigation" aria-label="Navigazione principale">
+                <ul id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#courses">Corsi</a></li>
+                    <li><a href="#categories">Categorie</a></li>
+                    <li><a href="#resources">Risorse</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home" role="main">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Impara a <span>programmare</span> con i nostri corsi</h1>
+                <p>Dalla teoria alla pratica: corsi completi in tutti i linguaggi di programmazione con esercizi, quiz e progetti reali.</p>
+                <div class="hero-buttons">
+                    <a href="#courses" class="btn-primary"><i class="fas fa-book" aria-hidden="true"></i> Inizia ora</a>
+                    <a href="#categories" class="btn-secondary"><i class="fas fa-list" aria-hidden="true"></i> Vedi tutti i corsi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS ===== -->
+    <section class="stats animate-on-scroll">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3><span>25+</span></h3>
+                    <p>Linguaggi di Programmazione</p>
+                </div>
+                <div class="stat-item">
+                    <h3><span>150+</span></h3>
+                    <p>Moduli Formativi</p>
+                </div>
+                <div class="stat-item">
+                    <h3><span>500+</span></h3>
+                    <p>Esercizi Pratici</p>
+                </div>
+                <div class="stat-item">
+                    <h3><span>100+</span></h3>
+                    <p>Progetti Completi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORIES ===== -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Categorie di <span>Corsi</span></h2>
+                <p>Scegli il linguaggio che vuoi imparare</p>
+            </div>
+            <div class="categories-grid" id="categoriesContainer">
+                <!-- Categories will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COURSES SECTION ===== -->
+    <section class="courses-section" id="courses">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Corsi <span>Disponibili</span></h2>
+                <p>Seleziona un corso e inizia il tuo percorso di apprendimento</p>
+            </div>
+
+            <!-- Filter and Search -->
+            <div class="filter-section animate-on-scroll">
+                <input type="text" id="searchCourses" class="search-input" placeholder="Cerca un corso..." aria-label="Cerca corsi">
+                <select id="levelFilter" class="level-filter" aria-label="Filtra per livello">
+                    <option value="">Tutti i Livelli</option>
+                    <option value="Principiante">Principiante</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Avanzato">Avanzato</option>
+                </select>
+            </div>
+
+            <!-- Courses Grid -->
+            <div class="courses-grid" id="coursesContainer">
+                <!-- Courses will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COURSE DETAIL MODAL ===== -->
+    <div id="courseModal" class="modal" role="dialog" aria-labelledby="courseTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="courseTitle"></h2>
+                <button class="close-btn" id="closeModal" aria-label="Chiudi"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="course-detail-info">
+                    <div class="detail-item">
+                        <span class="label">Livello:</span>
+                        <span id="courseLevel"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Durata:</span>
+                        <span id="courseDuration"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Lezioni:</span>
+                        <span id="courseLessons"></span>
+                    </div>
+                </div>
+
+                <div class="course-description">
+                    <h3>Descrizione</h3>
+                    <p id="courseDescription"></p>
+                </div>
+
+                <div class="course-modules">
+                    <h3>Moduli del Corso</h3>
+                    <div id="modulesContainer" class="modules-list"></div>
+                </div>
+
+                <div class="course-resources">
+                    <h3>Risorse Disponibili</h3>
+                    <div class="resources-buttons">
+                        <button class="btn-resource" id="downloadExercises"><i class="fas fa-download"></i> Scarica Esercizi</button>
+                        <button class="btn-resource" id="downloadProjects"><i class="fas fa-download"></i> Scarica Progetti</button>
+                        <button class="btn-resource" id="downloadSourceCode"><i class="fas fa-code"></i> Codice Sorgente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODULE DETAIL MODAL ===== -->
+    <div id="moduleModal" class="modal" role="dialog" aria-labelledby="moduleTitle" aria-hidden="true">
+        <div class="modal-content module-modal">
+            <div class="modal-header">
+                <h2 id="moduleTitle"></h2>
+                <button class="close-btn" id="closeModuleModal" aria-label="Chiudi"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="module-tabs">
+                    <button class="tab-btn active" data-tab="overview" aria-selected="true">Panoramica</button>
+                    <button class="tab-btn" data-tab="explanation" aria-selected="false">Spiegazione</button>
+                    <button class="tab-btn" data-tab="examples" aria-selected="false">Esempi</button>
+                    <button class="tab-btn" data-tab="exercises" aria-selected="false">Esercizi</button>
+                    <button class="tab-btn" data-tab="quiz" aria-selected="false">Quiz</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-content active">
+                    <h3>Cos'è?</h3>
+                    <p id="moduleOverview"></p>
+                    <h3>Perché è importante?</h3>
+                    <p id="moduleWhy"></p>
+                </div>
+
+                <!-- Explanation Tab -->
+                <div id="explanation" class="tab-content">
+                    <h3>Spiegazione Dettagliata</h3>
+                    <div id="moduleExplanation"></div>
+                </div>
+
+                <!-- Examples Tab -->
+                <div id="examples" class="tab-content">
+                    <h3>Esempi Pratici</h3>
+                    <div id="moduleExamples"></div>
+                </div>
+
+                <!-- Exercises Tab -->
+                <div id="exercises" class="tab-content">
+                    <h3>Esercizi</h3>
+                    <div id="moduleExercises"></div>
+                </div>
+
+                <!-- Quiz Tab -->
+                <div id="quiz" class="tab-content">
+                    <h3>Quiz di Valutazione</h3>
+                    <div id="moduleQuiz"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== RESOURCES SECTION ===== -->
+    <section class="resources" id="resources">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Risorse <span>Scaricabili</span></h2>
+                <p>Materiali, esercizi e progetti pronti da scaricare</p>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-card animate-on-scroll">
+                    <div class="resource-icon"><i class="fas fa-file-pdf"></i></div>
+                    <h3>Guida Completa HTML/CSS</h3>
+                    <p>200 pagine di teoria e pratica con 50+ esempi</p>
+                    <button class="btn-download" onclick="downloadResource('html-css-guide.pdf')"><i class="fas fa-download"></i> Scarica</button>
+                </div>
+                <div class="resource-card animate-on-scroll">
+                    <div class="resource-icon"><i class="fas fa-file-code"></i></div>
+                    <h3>Progetto E-Commerce Completo</h3>
+                    <p>Codice sorgente JavaScript vanilla con database MySQL</p>
+                    <button class="btn-download" onclick="downloadResource('ecommerce-project.zip')"><i class="fas fa-download"></i> Scarica</button>
+                </div>
+                <div class="resource-card animate-on-scroll">
+                    <div class="resource-icon"><i class="fas fa-folder"></i></div>
+                    <h3>Esercizi Python Avanzati</h3>
+                    <p>100+ esercizi con soluzioni commentate</p>
+                    <button class="btn-download" onclick="downloadResource('python-exercises.zip')"><i class="fas fa-download"></i> Scarica</button>
+                </div>
+                <div class="resource-card animate-on-scroll">
+                    <div class="resource-icon"><i class="fas fa-database"></i></div>
+                    <h3>Banca Dati SQL Realistica</h3>
+                    <p>Schema completo di e-commerce per esercitazioni</p>
+                    <button class="btn-download" onclick="downloadResource('ecommerce-database.sql')"><i class="fas fa-download"></i> Scarica</button>
+                </div>
+                <div class="resource-card animate-on-scroll">
+                    <div class="resource-icon"><i class="fas fa-react"></i></div>
+                    <h3>App React SPA Completa</h3>
+                    <p>Todo App con Context API e Local Storage</p>
+                    <button class="btn-download" onclick="downloadResource('react-app.zip')"><i class="fas fa-download"></i> Scarica</button>
+                </div>
+                <div class="resource-card animate-on-scroll">
+                    <div class="resource-icon"><i class="fas fa-server"></i></div>
+                    <h3>Backend Node.js REST API</h3>
+                    <p>API completa con autenticazione JWT e MongoDB</p>
+                    <button class="btn-download" onclick="downloadResource('nodejs-api.zip')"><i class="fas fa-download"></i> Scarica</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="socials">
+                <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Twitter" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                <a href="#" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            </div>
+            <p>&copy; 2026 Piattaforma Formazione. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="training-script.js"></script>
+</body>
+</html>
