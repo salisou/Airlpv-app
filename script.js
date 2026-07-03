@@ -73,3 +73,12 @@ if (contactForm) {
         contactForm.reset();
     });
 }
+
+// Academy course card interactions
+document.querySelectorAll('.btn-small').forEach(button => {
+    button.addEventListener('click', function(e) {
+        const courseCard = this.closest('.course-card');
+        const courseName = courseCard.querySelector('h3').textContent;
+        alert(`Accedi alla piattaforma Academy per iniziare il corso di ${courseName}!`);
+    });
+});
